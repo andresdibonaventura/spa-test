@@ -2,7 +2,7 @@ const router = require('express').Router()
 const passport = require('passport')
 require('../middleware/auth.middleware')(passport)
 
-const AppointmentServices = require('./appointment.http')
+const AppointmentServices = require('./appointments.http')
 
 router.route('/')
     .get(passport.authenticate('jwt', {session: false}), AppointmentServices.getAll)

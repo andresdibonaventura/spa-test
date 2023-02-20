@@ -11,9 +11,7 @@ router.route('/') //* /api/v1/users/
     .get(passport.authenticate('jwt', {session: false}), roleAdminMiddleware, userServices.getAll)
     .post(userServices.register)
 
-router.route('/teacher')
-    .post(userServices.createT)
-    .get(passport.authenticate('jwt', {session: false}),/*roleTeacherMiddleware ,*/ userServices.getStudents)  
+ 
 
     
 router.route('/me')
@@ -25,8 +23,6 @@ router.route('/me/profile-img')
     .post(passport.authenticate('jwt', {session: false}), upload.single('profile_img'), userServices.postProfileImg)
     //.get()
 
-router.route('/teacher/:id')
-.get(userServices.getTById)
 
 
 router.route('/:id')

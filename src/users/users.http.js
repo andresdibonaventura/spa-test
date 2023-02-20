@@ -12,53 +12,8 @@ const getAll = (req, res) => {
     });
 };
 
-const createT = (req, res) => {
-  const data = req.body;
-  if (!data || data.verificationCode !== '38493894920020') {
-    return res.status(400).json({ message: "Missing Data" });
-  } else if (
-    !data.firstName ||
-    !data.lastName ||
-    !data.gender ||
-    !data.email ||
-    !data.password ||
-    !data.country  ||
-    !data.verificationCode  
-  ) {
-    return res.status(400).json({
-      message: "All fields must be completed",
-      fields: {
-        first_name: "string",
-        last_name: "string",
-        email: "examle@examle.com",
-        password: "string",
-        country: "string",
-        verificationCode: "string"
-      },
-    }); //
-  } else {
-    userControllers.createTeacher(data)
-      .then((response) => {
-        res.status(201).json({
-          message: `Teacher profile created succesfully with id: ${response.id}`,
-          teacher: response,
-        });
-      })
-      .catch(err => {
-        res.status(400).json({message: `${err}, errooooor`})
-      }) 
-  }
-}
 
-const getStudents = (req, res) => {
-  userControllers.getAllStudents()
-  .then((response) => {
-    res.status(200).json(response);
-  })
-  .catch((err) => {
-    res.status(404).json({ message: `El usuario con el id ${id} no existe` });
-  });
-}
+
 
 const getById = (req, res) => {
   const id = req.params.id;
@@ -69,17 +24,6 @@ const getById = (req, res) => {
     })
     .catch((err) => {
       res.status(404).json({ message: `El usuario con el id ${id} no existe` });
-    });
-};
-const getTById = (req, res) => {
-  const id = req.params.id;
-  userControllers
-    .getUserById(id)
-    .then((response) => {
-      res.status(200).json(response);
-    })
-    .catch((err) => {
-      res.status(404).json({ message: `el profesor/a con el id ${id} no existe` });
     });
 };
 
@@ -290,7 +234,7 @@ const postProfileImg = (req, res) => {
 
 module.exports = {
   getAll,
-  getStudents,
+
   getById,
   register,
   remove,
@@ -299,6 +243,5 @@ module.exports = {
   getMyUser,
   removeMyUser,
   postProfileImg,
-  createT,
-  getTById
+
 };

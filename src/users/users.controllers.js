@@ -2,7 +2,7 @@ const uuid = require("uuid");
 const { hashPassword } = require("../utils/crypt");
 
 const Users = require('../models/user.model');
-const Teacher = require("../models/teacherModels");
+
 
 
 
@@ -22,37 +22,7 @@ const getAllUsers = async () => {
 
 
 
-const createTeacher = async (data) => {
-  
-const newUser = await Teacher.create({
-  id: uuid.v4(), 
-  firstName: data.firstName, 
-  lastName: data.lastName, 
-  gender: data.gender,
-  email: data.email, 
-  password: hashPassword(data.password),  
-  // birthdayDate: data.birthday_date,
-  country: data.country,
-  verificationCode: data.verificationCode,
-  status: 'active',
-  verified: false,
-})
 
-
-  return newUser
-
-}
-
-const getAllStudents = async () => {
-  const data = await Users.findAll({
-    
-      attributes: {
-        exclude: ['password']
-      }
-    }
-  )
-  return data
-}
 
 const getUserById = async(id) => {
   
@@ -68,19 +38,7 @@ const getUserById = async(id) => {
   //? select * from users where id = ${id};
 };
 
-const getTeacherById = async(id) => {
-  
-  const data = await Teacher.findOne({
-    where: {
-      id
-    },
-    attributes: {
-      exclude: ['password']
-    }
-  })
-  return data
-  //? select * from users where id = ${id};
-};
+
 
 const createUser = async(data) => {
   const newUser =  await Users.create({
@@ -150,28 +108,14 @@ const getUserByEmail = async (email) => {
   return data;
 }
 
-const getTeacherByEmail = async (email) => {
-  const data = await Teacher.findOne({
-    where: { email },
-    attributes: {
-      exclude: ["createdAt", "updatedAt"],
-    },
-  });
-  return data;
-}
-
 
 module.exports = {
   createUser,
-  getAllStudents,
   getAllUsers,
   getUserById,
   editUser,
   deleteUser,
   getUserByEmail,
   editUserAdmin,
-  createTeacher,
-  getTeacherByEmail,
-  getTeacherById,
-  processPayment
+
 }

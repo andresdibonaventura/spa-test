@@ -1,4 +1,4 @@
-const appController = require('./appointment.controller')
+const appController = require('./appointments.controller')
 
 const getAll = (req, res) => {
     appController

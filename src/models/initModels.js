@@ -1,7 +1,7 @@
 const Users = require('./user.model')
 const Roles = require('./roles.model')
 
-const Task = require('./taskModels')
+
 
 
 const initModels = () => {
@@ -10,8 +10,6 @@ const initModels = () => {
     // Roles.belongsToMany(Users)
     
     //? Users <-> Accomodations
-    Users.hasMany(Task)
-    Task.belongsTo(Users)
 
 }
 

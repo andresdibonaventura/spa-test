@@ -1,7 +1,4 @@
-
-const { Op } = require('sequelize');
-
-const { DataTypes } = require('sequelize')
+const { DataTypes, Op } = require('sequelize')
 
 const { db } = require('../utils/database')
 

@@ -4,7 +4,7 @@ const { db } = require('../utils/database')
 
 
 
-const Appointments = db.define('appointment', {
+const Peluqueria = db.define('peluqueria', {
     id: {
         primaryKey: true,
         type: DataTypes.UUID,
@@ -46,7 +46,7 @@ const Appointments = db.define('appointment', {
                         }
                     }
                 });
-                if (existingAppointments >= 2) {
+                if (existingAppointments >= 3) {
                     throw new Error('No hay citas disponibles a esta hora');
                 }
             }
@@ -69,4 +69,4 @@ const Appointments = db.define('appointment', {
     }
 })
 
-module.exports = Appointments
+module.exports = Peluqueria

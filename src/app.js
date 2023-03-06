@@ -9,6 +9,10 @@ const path = require('path')
 const userRouter = require("./users/users.router").router;
 const authRouter = require("./auth/auth.router").router;
 const appointmentRouter = require("./appointments/appointments.router").router;
+const peluqueriaRouter = require("./peluqueria/peluqueria.router").router;
+const microRouter = require("./micro/micro.router").router;
+const masajesRouter = require("./masajes/masajes.router").router;
+const facialesRouter = require("./faciales/faciales.router").router;
 const initModels = require("./models/initModels")
 // const defaultData = require("./utils/defaultData")
 const swaggerDoc = require("./swagger.json")
@@ -28,25 +32,25 @@ const {db} = require('./utils/database')
 
 
 initModels()
-// db.authenticate()
-//   .then(() => console.log('Database Authenticated'))
-//   .catch(err => console.log(err))
-//   if(process.env.NODE_ENV === 'production'){
-//     db.sync() 
-//       .then(() => {
-//         console.log('Database synced')
-//         // defaultData()
-//       })
-//       .catch(err => console.log(err))
-//      } 
-//       else{
-//     db.sync({force:true})
-//       .then(() => {
-//         console.log('Database synced')
-//         //  defaultData()
-//       })
-//       .catch(err => console.log(err))
-//     }
+db.authenticate()
+  .then(() => console.log('Database Authenticated'))
+  .catch(err => console.log(err))
+  if(process.env.NODE_ENV === 'production'){
+    db.sync() 
+      .then(() => {
+        console.log('Database synced')
+        // defaultData()
+      })
+      .catch(err => console.log(err))
+     } 
+      else{
+    db.sync({force:true})
+      .then(() => {
+        console.log('Database synced')
+        //  defaultData()
+      })
+      .catch(err => console.log(err))
+    }
 
 //? Esta configuracion es para habilitar el req.body
 
@@ -65,7 +69,11 @@ app.get("/", (req, res) => {
 });
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/citas", appointmentRouter);
+app.use("/api/v1/depilacion", appointmentRouter);
+app.use("/api/v1/peluqueria", peluqueriaRouter);
+app.use("/api/v1/masajes", masajesRouter);
+app.use("/api/v1/faciales", facialesRouter);
+app.use("/api/v1/micro", microRouter);
 // app.use("/v1/doc", swaggerUI.serve, swaggerUI.setup(swaggerDoc))
 
 
@@ -92,6 +100,6 @@ app.listen(8000, () => {
   console.log("Server started at port 8000");
 });
 
-// exports.default = app
-// exports.app = app
-// module.exports = app
+exports.default = app
+exports.app = app
+module.exports = app

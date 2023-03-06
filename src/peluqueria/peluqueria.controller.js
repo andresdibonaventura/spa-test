@@ -1,14 +1,14 @@
 const uuid = require("uuid");
 
-const Depilacion = require('../models/depilacionModel')
+const Peluqueria = require('../models/peluqueriaModel')
 
 const getAllAppointments = async () => {
-    const data = await Depilacion.findAll()
+    const data = await Peluqueria.findAll()
     return data
 }
 
 const getAppointmentById = async (id) => {
-    const data = await Depilacion.findOne({
+    const data = await Peluqueria.findOne({
         where: {
             id: id
         }
@@ -21,7 +21,7 @@ const getAppointmentById = async (id) => {
 
 const createAppointment = async (data) => {
   
-      const newAppointment = await Depilacion.create({
+      const newAppointment = await Peluqueria.create({
         id: uuid.v4(),
         firstName: data.firstName,
         lastName: data.lastName,
@@ -36,7 +36,7 @@ const createAppointment = async (data) => {
 //   };
 
 const deleteAppointment = async (id) => {
-    const data = await Depilacion.destroy({
+    const data = await Peluqueria.destroy({
         where:{
             id:id
         }

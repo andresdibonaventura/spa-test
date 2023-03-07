@@ -5,7 +5,7 @@ require('../middleware/auth.middleware')(passport)
 const AppointmentServices = require('./masajes.http')
 
 router.route('/')
-    .get(passport.authenticate('jwt', {session: false}), AppointmentServices.getAll)
+    .get( AppointmentServices.getAll)
     .post(AppointmentServices.create)
 
 router.route('/:id')

@@ -39,7 +39,7 @@ const Masajes = db.define('masajes', {
             async isAvailable(value) {
                 const startHour = new Date(value).setMinutes(0, 0, 0);
                 const endHour = new Date(value).setMinutes(59, 59, 999);
-                const existingAppointments = await Appointments.count({
+                const existingAppointments = await Masajes.count({
                     where: {
                         time: {
                             [Op.between]: [startHour, endHour]
